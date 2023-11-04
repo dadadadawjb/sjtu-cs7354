@@ -1,0 +1,54 @@
+git clone git@github.com:dadadadawjb/sjtu-cs7354.git
+cd sjtu-cs7354
+
+# 任务一
+git branch feature-newFunc
+git checkout feature-newFunc
+// 修改mydiary/diary.txt内容
+git add mydiary/diary.txt
+git commit -m "Added diary entry for feature work"
+// 修改mydiary/diary.txt内容
+git add mydiary/diary.txt
+git commit -m "Added another diary entry for feature work"
+git rebase -i HEAD~2
+// 在编辑器中修改最新一次提交的命令"pick"改为"squash"并在提交信息中描述为"Added diary entries for feature work"
+git checkout main
+git merge feature-newFunc
+
+# 任务二
+git checkout experiment
+git checkout main
+git cherry-pick experiment^
+git push --all origin -u
+
+# 任务三
+git checkout dev
+git log
+git revert HEAD^^...HEAD
+// 在编辑器中将提交信息描述为"Revert mistakenly added irrelevant content"和"Revert some repeatedly added content"
+git push --all origin -u
+
+# 任务四
+git checkout main
+// 修改frontend/styles.css内容
+git add frontend/styles.css
+git commit -m "Modify frontend body font family"
+git checkout feature-upload
+git diff feature-upload main
+git checkout main
+git merge feature-upload
+// 解决frontend/styles.css冲突，保留body font-family为main分支内容并加上来自feature-upload分支的button内容
+git add frontend
+git commit -m "Merge feature-upload to main"
+
+# 任务五
+git checkout documentation --
+git rebase -i HEAD~4
+// 在编辑器中将两次与PROJECT_REVIEW有关的提交移至最前，并将第二次与PROJECT_REVIEW有关的提交的命令"pick"改为"squash"，然后将与CONTRIBUTING_GUIDE有关的提交移到第三行，而与INSTALL_GUIDE有关的提交移到第四行，并在提交信息中描述为"Update project overview with new feature description"
+git checkout main
+git merge documentation
+git push --all --force origin -u
+
+git add git_comment.txt
+git commit -m "Add git comment"
+git push --all origin
